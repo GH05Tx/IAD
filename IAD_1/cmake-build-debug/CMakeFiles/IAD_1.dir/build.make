@@ -42,10 +42,10 @@ RM = "C:\Program Files\JetBrains\CLion 2018.3.4\bin\cmake\win\bin\cmake.exe" -E 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Jasiek\Desktop\IAD_1
+CMAKE_SOURCE_DIR = C:\Users\Jasiek\Desktop\IAD\IAD_1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Jasiek\Desktop\IAD_1\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\Jasiek\Desktop\IAD\IAD_1\cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/IAD_1.dir/depend.make
@@ -58,94 +58,94 @@ include CMakeFiles/IAD_1.dir/flags.make
 
 CMakeFiles/IAD_1.dir/main.cpp.obj: CMakeFiles/IAD_1.dir/flags.make
 CMakeFiles/IAD_1.dir/main.cpp.obj: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Jasiek\Desktop\IAD_1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/IAD_1.dir/main.cpp.obj"
-	C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\IAD_1.dir\main.cpp.obj -c C:\Users\Jasiek\Desktop\IAD_1\main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Jasiek\Desktop\IAD\IAD_1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/IAD_1.dir/main.cpp.obj"
+	C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\IAD_1.dir\main.cpp.obj -c C:\Users\Jasiek\Desktop\IAD\IAD_1\main.cpp
 
 CMakeFiles/IAD_1.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/IAD_1.dir/main.cpp.i"
-	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Jasiek\Desktop\IAD_1\main.cpp > CMakeFiles\IAD_1.dir\main.cpp.i
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Jasiek\Desktop\IAD\IAD_1\main.cpp > CMakeFiles\IAD_1.dir\main.cpp.i
 
 CMakeFiles/IAD_1.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/IAD_1.dir/main.cpp.s"
-	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Jasiek\Desktop\IAD_1\main.cpp -o CMakeFiles\IAD_1.dir\main.cpp.s
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Jasiek\Desktop\IAD\IAD_1\main.cpp -o CMakeFiles\IAD_1.dir\main.cpp.s
 
 CMakeFiles/IAD_1.dir/src/Proba.cpp.obj: CMakeFiles/IAD_1.dir/flags.make
 CMakeFiles/IAD_1.dir/src/Proba.cpp.obj: ../src/Proba.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Jasiek\Desktop\IAD_1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/IAD_1.dir/src/Proba.cpp.obj"
-	C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\IAD_1.dir\src\Proba.cpp.obj -c C:\Users\Jasiek\Desktop\IAD_1\src\Proba.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Jasiek\Desktop\IAD\IAD_1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/IAD_1.dir/src/Proba.cpp.obj"
+	C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\IAD_1.dir\src\Proba.cpp.obj -c C:\Users\Jasiek\Desktop\IAD\IAD_1\src\Proba.cpp
 
 CMakeFiles/IAD_1.dir/src/Proba.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/IAD_1.dir/src/Proba.cpp.i"
-	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Jasiek\Desktop\IAD_1\src\Proba.cpp > CMakeFiles\IAD_1.dir\src\Proba.cpp.i
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Jasiek\Desktop\IAD\IAD_1\src\Proba.cpp > CMakeFiles\IAD_1.dir\src\Proba.cpp.i
 
 CMakeFiles/IAD_1.dir/src/Proba.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/IAD_1.dir/src/Proba.cpp.s"
-	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Jasiek\Desktop\IAD_1\src\Proba.cpp -o CMakeFiles\IAD_1.dir\src\Proba.cpp.s
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Jasiek\Desktop\IAD\IAD_1\src\Proba.cpp -o CMakeFiles\IAD_1.dir\src\Proba.cpp.s
 
 CMakeFiles/IAD_1.dir/src/Dane.cpp.obj: CMakeFiles/IAD_1.dir/flags.make
 CMakeFiles/IAD_1.dir/src/Dane.cpp.obj: ../src/Dane.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Jasiek\Desktop\IAD_1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/IAD_1.dir/src/Dane.cpp.obj"
-	C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\IAD_1.dir\src\Dane.cpp.obj -c C:\Users\Jasiek\Desktop\IAD_1\src\Dane.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Jasiek\Desktop\IAD\IAD_1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/IAD_1.dir/src/Dane.cpp.obj"
+	C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\IAD_1.dir\src\Dane.cpp.obj -c C:\Users\Jasiek\Desktop\IAD\IAD_1\src\Dane.cpp
 
 CMakeFiles/IAD_1.dir/src/Dane.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/IAD_1.dir/src/Dane.cpp.i"
-	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Jasiek\Desktop\IAD_1\src\Dane.cpp > CMakeFiles\IAD_1.dir\src\Dane.cpp.i
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Jasiek\Desktop\IAD\IAD_1\src\Dane.cpp > CMakeFiles\IAD_1.dir\src\Dane.cpp.i
 
 CMakeFiles/IAD_1.dir/src/Dane.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/IAD_1.dir/src/Dane.cpp.s"
-	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Jasiek\Desktop\IAD_1\src\Dane.cpp -o CMakeFiles\IAD_1.dir\src\Dane.cpp.s
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Jasiek\Desktop\IAD\IAD_1\src\Dane.cpp -o CMakeFiles\IAD_1.dir\src\Dane.cpp.s
 
 CMakeFiles/IAD_1.dir/src/DaneIS.cpp.obj: CMakeFiles/IAD_1.dir/flags.make
 CMakeFiles/IAD_1.dir/src/DaneIS.cpp.obj: ../src/DaneIS.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Jasiek\Desktop\IAD_1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/IAD_1.dir/src/DaneIS.cpp.obj"
-	C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\IAD_1.dir\src\DaneIS.cpp.obj -c C:\Users\Jasiek\Desktop\IAD_1\src\DaneIS.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Jasiek\Desktop\IAD\IAD_1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/IAD_1.dir/src/DaneIS.cpp.obj"
+	C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\IAD_1.dir\src\DaneIS.cpp.obj -c C:\Users\Jasiek\Desktop\IAD\IAD_1\src\DaneIS.cpp
 
 CMakeFiles/IAD_1.dir/src/DaneIS.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/IAD_1.dir/src/DaneIS.cpp.i"
-	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Jasiek\Desktop\IAD_1\src\DaneIS.cpp > CMakeFiles\IAD_1.dir\src\DaneIS.cpp.i
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Jasiek\Desktop\IAD\IAD_1\src\DaneIS.cpp > CMakeFiles\IAD_1.dir\src\DaneIS.cpp.i
 
 CMakeFiles/IAD_1.dir/src/DaneIS.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/IAD_1.dir/src/DaneIS.cpp.s"
-	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Jasiek\Desktop\IAD_1\src\DaneIS.cpp -o CMakeFiles\IAD_1.dir\src\DaneIS.cpp.s
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Jasiek\Desktop\IAD\IAD_1\src\DaneIS.cpp -o CMakeFiles\IAD_1.dir\src\DaneIS.cpp.s
 
 CMakeFiles/IAD_1.dir/src/DaneIVC.cpp.obj: CMakeFiles/IAD_1.dir/flags.make
 CMakeFiles/IAD_1.dir/src/DaneIVC.cpp.obj: ../src/DaneIVC.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Jasiek\Desktop\IAD_1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/IAD_1.dir/src/DaneIVC.cpp.obj"
-	C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\IAD_1.dir\src\DaneIVC.cpp.obj -c C:\Users\Jasiek\Desktop\IAD_1\src\DaneIVC.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Jasiek\Desktop\IAD\IAD_1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/IAD_1.dir/src/DaneIVC.cpp.obj"
+	C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\IAD_1.dir\src\DaneIVC.cpp.obj -c C:\Users\Jasiek\Desktop\IAD\IAD_1\src\DaneIVC.cpp
 
 CMakeFiles/IAD_1.dir/src/DaneIVC.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/IAD_1.dir/src/DaneIVC.cpp.i"
-	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Jasiek\Desktop\IAD_1\src\DaneIVC.cpp > CMakeFiles\IAD_1.dir\src\DaneIVC.cpp.i
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Jasiek\Desktop\IAD\IAD_1\src\DaneIVC.cpp > CMakeFiles\IAD_1.dir\src\DaneIVC.cpp.i
 
 CMakeFiles/IAD_1.dir/src/DaneIVC.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/IAD_1.dir/src/DaneIVC.cpp.s"
-	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Jasiek\Desktop\IAD_1\src\DaneIVC.cpp -o CMakeFiles\IAD_1.dir\src\DaneIVC.cpp.s
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Jasiek\Desktop\IAD\IAD_1\src\DaneIVC.cpp -o CMakeFiles\IAD_1.dir\src\DaneIVC.cpp.s
 
 CMakeFiles/IAD_1.dir/src/DaneIV.cpp.obj: CMakeFiles/IAD_1.dir/flags.make
 CMakeFiles/IAD_1.dir/src/DaneIV.cpp.obj: ../src/DaneIV.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Jasiek\Desktop\IAD_1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/IAD_1.dir/src/DaneIV.cpp.obj"
-	C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\IAD_1.dir\src\DaneIV.cpp.obj -c C:\Users\Jasiek\Desktop\IAD_1\src\DaneIV.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Jasiek\Desktop\IAD\IAD_1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/IAD_1.dir/src/DaneIV.cpp.obj"
+	C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\IAD_1.dir\src\DaneIV.cpp.obj -c C:\Users\Jasiek\Desktop\IAD\IAD_1\src\DaneIV.cpp
 
 CMakeFiles/IAD_1.dir/src/DaneIV.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/IAD_1.dir/src/DaneIV.cpp.i"
-	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Jasiek\Desktop\IAD_1\src\DaneIV.cpp > CMakeFiles\IAD_1.dir\src\DaneIV.cpp.i
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Jasiek\Desktop\IAD\IAD_1\src\DaneIV.cpp > CMakeFiles\IAD_1.dir\src\DaneIV.cpp.i
 
 CMakeFiles/IAD_1.dir/src/DaneIV.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/IAD_1.dir/src/DaneIV.cpp.s"
-	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Jasiek\Desktop\IAD_1\src\DaneIV.cpp -o CMakeFiles\IAD_1.dir\src\DaneIV.cpp.s
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Jasiek\Desktop\IAD\IAD_1\src\DaneIV.cpp -o CMakeFiles\IAD_1.dir\src\DaneIV.cpp.s
 
 CMakeFiles/IAD_1.dir/src/DaneALL.cpp.obj: CMakeFiles/IAD_1.dir/flags.make
 CMakeFiles/IAD_1.dir/src/DaneALL.cpp.obj: ../src/DaneALL.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Jasiek\Desktop\IAD_1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/IAD_1.dir/src/DaneALL.cpp.obj"
-	C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\IAD_1.dir\src\DaneALL.cpp.obj -c C:\Users\Jasiek\Desktop\IAD_1\src\DaneALL.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Jasiek\Desktop\IAD\IAD_1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/IAD_1.dir/src/DaneALL.cpp.obj"
+	C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\IAD_1.dir\src\DaneALL.cpp.obj -c C:\Users\Jasiek\Desktop\IAD\IAD_1\src\DaneALL.cpp
 
 CMakeFiles/IAD_1.dir/src/DaneALL.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/IAD_1.dir/src/DaneALL.cpp.i"
-	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Jasiek\Desktop\IAD_1\src\DaneALL.cpp > CMakeFiles\IAD_1.dir\src\DaneALL.cpp.i
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Jasiek\Desktop\IAD\IAD_1\src\DaneALL.cpp > CMakeFiles\IAD_1.dir\src\DaneALL.cpp.i
 
 CMakeFiles/IAD_1.dir/src/DaneALL.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/IAD_1.dir/src/DaneALL.cpp.s"
-	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Jasiek\Desktop\IAD_1\src\DaneALL.cpp -o CMakeFiles\IAD_1.dir\src\DaneALL.cpp.s
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Jasiek\Desktop\IAD\IAD_1\src\DaneALL.cpp -o CMakeFiles\IAD_1.dir\src\DaneALL.cpp.s
 
 # Object files for target IAD_1
 IAD_1_OBJECTS = \
@@ -171,7 +171,7 @@ IAD_1.exe: CMakeFiles/IAD_1.dir/build.make
 IAD_1.exe: CMakeFiles/IAD_1.dir/linklibs.rsp
 IAD_1.exe: CMakeFiles/IAD_1.dir/objects1.rsp
 IAD_1.exe: CMakeFiles/IAD_1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Jasiek\Desktop\IAD_1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable IAD_1.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Jasiek\Desktop\IAD\IAD_1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable IAD_1.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\IAD_1.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -184,6 +184,6 @@ CMakeFiles/IAD_1.dir/clean:
 .PHONY : CMakeFiles/IAD_1.dir/clean
 
 CMakeFiles/IAD_1.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\Jasiek\Desktop\IAD_1 C:\Users\Jasiek\Desktop\IAD_1 C:\Users\Jasiek\Desktop\IAD_1\cmake-build-debug C:\Users\Jasiek\Desktop\IAD_1\cmake-build-debug C:\Users\Jasiek\Desktop\IAD_1\cmake-build-debug\CMakeFiles\IAD_1.dir\DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\Jasiek\Desktop\IAD\IAD_1 C:\Users\Jasiek\Desktop\IAD\IAD_1 C:\Users\Jasiek\Desktop\IAD\IAD_1\cmake-build-debug C:\Users\Jasiek\Desktop\IAD\IAD_1\cmake-build-debug C:\Users\Jasiek\Desktop\IAD\IAD_1\cmake-build-debug\CMakeFiles\IAD_1.dir\DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/IAD_1.dir/depend
 

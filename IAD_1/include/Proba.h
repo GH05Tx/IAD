@@ -23,35 +23,33 @@ public:
 
     void wyswietl();
 
-    float minimum();
+    double minimum();
 
-    float maksimum();
+    double maksimum();
 
-    float rozstep();
+    double rozstep();
 
-    float kwartyl_1();
+    double kwartyl_1();
 
     double mediana();
 
-    float kwartyl_3();
+    double kwartyl_3();
 
     double harmoniczna();
 
     double geometryczna();
 
-    float arytmetyczna();
+    double arytmetyczna();
 
     double potegowa_2();
 
     double potegowa_3();
 
-    double potegowa(int);
+    double wariancja();
 
-    float wariancja();
+    double odchylenie();
 
-    float odchylenie();
-
-    float kurtoza();
+    double kurtoza();
 };
 
 typedef shared_ptr<Proba> Proba_ptr;

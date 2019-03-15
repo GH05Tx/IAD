@@ -8,18 +8,18 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="C:/Users/Jasiek/Desktop/IAD_1/cmake-build-debug"/>
+				<Option working_dir="C:/Users/Jasiek/Desktop/IAD/IAD_1/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="IAD_1">
-				<Option output="C:/Users/Jasiek/Desktop/IAD_1/cmake-build-debug/IAD_1.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/Jasiek/Desktop/IAD_1/cmake-build-debug"/>
+				<Option output="C:/Users/Jasiek/Desktop/IAD/IAD_1/cmake-build-debug/IAD_1.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Jasiek/Desktop/IAD/IAD_1/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -33,15 +33,15 @@
 					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/../../../../mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 IAD_1"/>
-					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 IAD_1"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="IAD_1/fast">
-				<Option output="C:/Users/Jasiek/Desktop/IAD_1/cmake-build-debug/IAD_1.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/Jasiek/Desktop/IAD_1/cmake-build-debug"/>
+				<Option output="C:/Users/Jasiek/Desktop/IAD/IAD_1/cmake-build-debug/IAD_1.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Jasiek/Desktop/IAD/IAD_1/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -55,73 +55,73 @@
 					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/../../../../mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 IAD_1/fast"/>
-					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 IAD_1/fast"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="C:/Users/Jasiek/Desktop/IAD_1/cmake-build-debug"/>
+				<Option working_dir="C:/Users/Jasiek/Desktop/IAD/IAD_1/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="C:/Users/Jasiek/Desktop/IAD_1/cmake-build-debug"/>
+				<Option working_dir="C:/Users/Jasiek/Desktop/IAD/IAD_1/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Jasiek/Desktop/IAD/IAD_1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/Jasiek/Desktop/IAD_1/include/Dane.h">
+		<Unit filename="C:/Users/Jasiek/Desktop/IAD/IAD_1/include/Dane.h">
 			<Option target="IAD_1"/>
 		</Unit>
-		<Unit filename="C:/Users/Jasiek/Desktop/IAD_1/include/DaneALL.h">
+		<Unit filename="C:/Users/Jasiek/Desktop/IAD/IAD_1/include/DaneALL.h">
 			<Option target="IAD_1"/>
 		</Unit>
-		<Unit filename="C:/Users/Jasiek/Desktop/IAD_1/include/DaneIS.h">
+		<Unit filename="C:/Users/Jasiek/Desktop/IAD/IAD_1/include/DaneIS.h">
 			<Option target="IAD_1"/>
 		</Unit>
-		<Unit filename="C:/Users/Jasiek/Desktop/IAD_1/include/DaneIV.h">
+		<Unit filename="C:/Users/Jasiek/Desktop/IAD/IAD_1/include/DaneIV.h">
 			<Option target="IAD_1"/>
 		</Unit>
-		<Unit filename="C:/Users/Jasiek/Desktop/IAD_1/include/DaneIVC.h">
+		<Unit filename="C:/Users/Jasiek/Desktop/IAD/IAD_1/include/DaneIVC.h">
 			<Option target="IAD_1"/>
 		</Unit>
-		<Unit filename="C:/Users/Jasiek/Desktop/IAD_1/include/Proba.h">
+		<Unit filename="C:/Users/Jasiek/Desktop/IAD/IAD_1/include/Proba.h">
 			<Option target="IAD_1"/>
 		</Unit>
-		<Unit filename="C:/Users/Jasiek/Desktop/IAD_1/main.cpp">
+		<Unit filename="C:/Users/Jasiek/Desktop/IAD/IAD_1/main.cpp">
 			<Option target="IAD_1"/>
 		</Unit>
-		<Unit filename="C:/Users/Jasiek/Desktop/IAD_1/src/Dane.cpp">
+		<Unit filename="C:/Users/Jasiek/Desktop/IAD/IAD_1/src/Dane.cpp">
 			<Option target="IAD_1"/>
 		</Unit>
-		<Unit filename="C:/Users/Jasiek/Desktop/IAD_1/src/DaneALL.cpp">
+		<Unit filename="C:/Users/Jasiek/Desktop/IAD/IAD_1/src/DaneALL.cpp">
 			<Option target="IAD_1"/>
 		</Unit>
-		<Unit filename="C:/Users/Jasiek/Desktop/IAD_1/src/DaneIS.cpp">
+		<Unit filename="C:/Users/Jasiek/Desktop/IAD/IAD_1/src/DaneIS.cpp">
 			<Option target="IAD_1"/>
 		</Unit>
-		<Unit filename="C:/Users/Jasiek/Desktop/IAD_1/src/DaneIV.cpp">
+		<Unit filename="C:/Users/Jasiek/Desktop/IAD/IAD_1/src/DaneIV.cpp">
 			<Option target="IAD_1"/>
 		</Unit>
-		<Unit filename="C:/Users/Jasiek/Desktop/IAD_1/src/DaneIVC.cpp">
+		<Unit filename="C:/Users/Jasiek/Desktop/IAD/IAD_1/src/DaneIVC.cpp">
 			<Option target="IAD_1"/>
 		</Unit>
-		<Unit filename="C:/Users/Jasiek/Desktop/IAD_1/src/Proba.cpp">
+		<Unit filename="C:/Users/Jasiek/Desktop/IAD/IAD_1/src/Proba.cpp">
 			<Option target="IAD_1"/>
 		</Unit>
-		<Unit filename="C:/Users/Jasiek/Desktop/IAD_1/CMakeLists.txt">
+		<Unit filename="C:/Users/Jasiek/Desktop/IAD/IAD_1/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

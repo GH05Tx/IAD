@@ -20,7 +20,7 @@ void Proba::wyswietl() {
     }
 }
 
-float Proba::minimum() {
+double Proba::minimum() {
     float min = dane[0];
     for (int i = 1; i < dane.size(); i++) {
         if (dane[i] < min) min = dane[i];
@@ -28,7 +28,7 @@ float Proba::minimum() {
     return min;
 }
 
-float Proba::maksimum() {
+double Proba::maksimum() {
     float max = dane[0];
     for (int i = 1; i < dane.size(); i++) {
         if (dane[i] > max) max = dane[i];
@@ -36,12 +36,22 @@ float Proba::maksimum() {
     return max;
 }
 
-float Proba::rozstep() {
+double Proba::rozstep() {
     return Proba::maksimum() - Proba::minimum();
 }
 
-float Proba::kwartyl_1() {
+double Proba::kwartyl_1() {
+    double tmp, n;
+    tmp = 1.0 * (dane.size() + 1) / 4;
+    double ulamek = modf(tmp, &n);
+    return dane[n - 1] + ulamek * (dane[n] - dane[n - 1]);
+}
 
+double Proba::kwartyl_3() {
+    double tmp, n;
+    tmp = 1.0 * (3 * dane.size() + 1) / 4;
+    double ulamek = modf(tmp, &n);
+    return dane[n - 1] + ulamek * (dane[n] - dane[n - 1]);
 }
 
 double Proba::mediana() {
@@ -53,16 +63,12 @@ double Proba::mediana() {
     }
 }
 
-float Proba::kwartyl_3() {
-
-}
-
 double Proba::harmoniczna() {
-    float suma = 0;
+    double suma = 0;
     for (int i = 0; i < dane.size(); i++) {
-        suma += 1 / dane[i] * 1.0;
+        suma += 1 / dane[i];
     }
-    return dane.size() / suma * 1.0;
+    return dane.size() / suma;
 }
 
 double Proba::geometryczna() {
@@ -70,10 +76,10 @@ double Proba::geometryczna() {
     for (int i = 0; i < dane.size(); i++) {
         srednia *= dane[i];
     }
-    return pow(srednia, (1 / 1.0 * dane.size()));
+    return pow(srednia, (1.0 / dane.size()));
 }
 
-float Proba::arytmetyczna() {
+double Proba::arytmetyczna() {
     float srednia = 0;
     for (int i = 0; i < dane.size(); i++) {
         srednia += dane[i];
@@ -82,49 +88,44 @@ float Proba::arytmetyczna() {
 }
 
 double Proba::potegowa_2() {
-    float suma = 0;
+    float suma = 0, tmp = 0;
     for (int i = 0; i < dane.size(); i++) {
         suma += dane[i] * dane[i];
     }
-    return pow(suma/dane.size(), 1/2);
+    tmp = suma / dane.size();
+    return pow(tmp, 1.0 / 2);
 }
-/*
-–1 średnia harmoniczna
-0 średnia geometryczna
-1 średnia arytmetyczna
-2 średnia kwadratowa
-*/
 
 double Proba::potegowa_3() {
-    float suma=0;
-    for(int i=0; i<dane.size(); i++)
-    {
-        suma+=pow(dane[i],3);
-    }
-    return pow(suma/dane.size(), 1/3);
-}
-
-double Proba::potegowa(int n) {
-    float suma = 0;
+    float suma = 0, tmp = 0;
     for (int i = 0; i < dane.size(); i++) {
-        suma += pow(dane[i], n);
+        suma += dane[i] * dane[i] * dane[i];
     }
-    return pow(suma / dane.size(), 1 / n);
+    tmp = suma / dane.size();
+    return pow(tmp, 1.0 / 3);
 }
 
-float Proba::wariancja() {
-    float suma = 0, arytmetyczna=Proba::arytmetyczna();
+double Proba::wariancja() {
+    double suma = 0, arytmetyczna = Proba::arytmetyczna();
     for (int i = 0; i < dane.size(); i++) {
-        suma += (dane[i] - arytmetyczna)*(dane[i] - arytmetyczna);
+        suma += (dane[i] - arytmetyczna) * (dane[i] - arytmetyczna);
     }
-    if (dane.size() < 30) return 1 / (dane.size() - 1) * suma;
-    else return 1.0*(1 / dane.size() * suma);
+    if (dane.size() < 30) return 1.0 / (dane.size() - 1) * suma;
+    else return (1.0 / dane.size() * suma);
 }
 
-float Proba::odchylenie() {
+double Proba::odchylenie() {
     return sqrt(Proba::wariancja());
 }
 
-float Proba::kurtoza() {
-
+double Proba::kurtoza() {
+    int n = dane.size();
+    double tmp = 0, suma = 0;
+    double tmp1 = (n * (n + 1)) / ((n - 1) * (n - 2) * (n - 3));
+    double tmp2 = (3 * (n - 1) * (n - 1)) / ((n - 2) * (n - 3));
+    for (int i = 0; i < dane.size(); i++) {
+        tmp = (dane[i] - Proba::arytmetyczna()) / Proba::odchylenie();
+        suma += tmp * tmp * tmp * tmp;
+    }
+    return tmp1 * suma - tmp2;
 }
