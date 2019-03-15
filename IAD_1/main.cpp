@@ -6,6 +6,8 @@
 #include "include/DaneIVC.h"
 #include "include/DaneIS.h"
 #include <iostream>
+#include "gnuplot_i.hpp"
+
 using namespace std;
 
 int main() {
@@ -43,6 +45,34 @@ int main() {
     cout << "- wariancja: " << proba1->wariancja() << endl;
     cout << "- odchylenie: " << proba1->odchylenie() << endl;
     cout << "- kurtoza: " << proba1->kurtoza() << endl;
+
+//Rysowanie wykresow
+    Gnuplot wykres;
+    wykres.set_xlabel("Sepal Length");
+    wykres.set_ylabel("Sepal Width");
+    wykres.set_xrange(4, 8);
+    wykres.set_yrange(2, 5);
+    wykres.set_grid();
+    wykres.set_style("points");
+    wykres.set_pointsize(1.5);
+    wykres.plot_xy(versi->getSL(),versi->getSW(), "Sepal versicolor");
+    wykres.plot_xy(virginica->getSL(),virginica->getSW(), "Sepal virginica");
+    wykres.plot_xy(setosa->getSL(),setosa->getSW(), "Sepal setosa");
+
+    Gnuplot wykres2;
+    wykres2.set_xlabel("Petal Length");
+    wykres2.set_ylabel("Petal Width");
+    wykres2.set_xrange(0.9,8);
+    wykres2.set_yrange(0,3);
+    wykres2.set_grid();
+    wykres2.set_style("points");
+    wykres2.set_pointsize(1.5);
+    wykres2.plot_xy(versi->getPL(),versi->getPW(), "Petal versicolor");
+    wykres2.plot_xy(virginica->getPL(),virginica->getPW(), "Petal virginica");
+    wykres2.plot_xy(setosa->getPL(),setosa->getPW(), "Petal setosa");
+
+    cin.sync();
+    cin.get();
 
     return 0;
 }

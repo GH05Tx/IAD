@@ -6,23 +6,27 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/Jasiek/Desktop/IAD/IAD_1/include/Proba.h
+C:/Users/Maciej Pracucik/CLionProjects/IAD/IAD_1/include/Dane.h
 iostream
 -
-memory
--
 vector
+-
+memory
 -
 
-C:/Users/Jasiek/Desktop/IAD/IAD_1/src/Proba.cpp
-../include/Proba.h
-C:/Users/Jasiek/Desktop/IAD/IAD_1/include/Proba.h
-iostream
--
+C:/Users/Maciej Pracucik/CLionProjects/IAD/IAD_1/include/DaneIV.h
+Dane.h
+C:/Users/Maciej Pracucik/CLionProjects/IAD/IAD_1/include/Dane.h
 memory
 -
-vector
+
+C:/Users/Maciej Pracucik/CLionProjects/IAD/IAD_1/src/DaneIV.cpp
+../include/DaneIV.h
+C:/Users/Maciej Pracucik/CLionProjects/IAD/IAD_1/include/DaneIV.h
+iostream
 -
-math.h
+fstream
+-
+cstring
 -
 
