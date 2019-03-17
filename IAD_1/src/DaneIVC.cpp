@@ -49,3 +49,7 @@ void DaneIVC::wczytaj() {
     }
     plik.close();
 }
+
+DaneIVC::DaneIVC() {
+    this->gatunek="Iris-versicolor";
+}

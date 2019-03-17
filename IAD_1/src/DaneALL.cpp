@@ -43,3 +43,7 @@ void DaneALL::wczytaj(){
         }
         plik.close();
 }
+
+DaneALL::DaneALL() {
+    this->gatunek="Zbior wszystkich danych";
+}

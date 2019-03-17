@@ -12,6 +12,7 @@
 class DaneIS: public Dane{
 public:
     void wczytaj();
+    DaneIS();
 };
 typedef shared_ptr<DaneIS> DIS_ptr;
 

@@ -10,6 +10,7 @@
 class DaneALL: public Dane {
 public:
     void wczytaj();
+    DaneALL();
 };
 
 

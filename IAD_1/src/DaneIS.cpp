@@ -49,3 +49,7 @@ void DaneIS::wczytaj() {
     }
     plik.close();
 }
+
+DaneIS::DaneIS() {
+    this->gatunek="Iris-setosa";
+}

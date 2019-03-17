@@ -9,6 +9,7 @@
 class DaneIVC: public Dane {
 public:
     void wczytaj();
+    DaneIVC();
 };
 typedef shared_ptr<DaneIVC> DIVC_ptr;
 

@@ -10,6 +10,7 @@
 #include <vector>
 #include <stdlib.h>
 #include <math.h>
+#include <iomanip>
 
 /*
 void Dane::wczytaj() {
@@ -56,25 +57,25 @@ void Dane::wczytaj() {
 */
 void Dane::printSL() {
     for (int i = 0; i < sepalLength.size(); i++) {
-        cout << sepalLength[i] << " ";
+        cout << fixed << setprecision( 1 ) << sepalLength[i] << " ";
     }
 }
 
 void Dane::printSW() {
     for (int i = 0; i < sepalWidth.size(); i++) {
-        cout << sepalWidth[i] << " ";
+        cout << fixed << setprecision( 1 ) << sepalWidth[i] << " ";
     }
 }
 
 void Dane::printPL() {
     for (int i = 0; i < petalLength.size(); i++) {
-        cout << petalLength[i] << " ";
+        cout << fixed << setprecision( 1 ) << petalLength[i] << " ";
     }
 }
 
 void Dane::printPW() {
     for (int i = 0; i < petalWidth.size(); i++) {
-        cout << petalWidth[i] << " ";
+        cout << fixed << setprecision( 1 ) << petalWidth[i] << " ";
     }
 }
 

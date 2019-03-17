@@ -7,6 +7,7 @@
 #include <memory>
 #include <vector>
 #include <math.h>
+#include <iomanip>
 
 using namespace std;
 
@@ -14,9 +15,26 @@ Proba::Proba(vector<float> &tablica) {
     this->dane = tablica;
 }
 
+void Proba::analizuj() {
+    cout << "Minimum: " << fixed << setprecision( 2 ) << Proba::minimum() << endl;
+    cout << "Maksimum: " << Proba::maksimum() << endl;
+    cout << "Rozstep: " << Proba::rozstep() << endl;
+    cout << "Kwartyl 1: " << Proba::kwartyl_1() << endl;
+    cout << "Kwartyl 3: " << Proba::kwartyl_3() << endl;
+    cout << "Mediana: " << Proba::mediana() << endl;
+    cout << "Srednia arytmetyczna: " << Proba::arytmetyczna() << endl;
+    cout << "Srednia harmoniczna: " << Proba::harmoniczna() << endl;
+    cout << "Srednia geometryczna: " << Proba::geometryczna() << endl;
+    cout << "Srednia potegowa 2: " << Proba::potegowa_2() << endl;
+    cout << "Srednia potegowa 3: " << Proba::potegowa_3() << endl;
+    cout << "Wariancja: " << Proba::wariancja() << endl;
+    cout << "Odchylenie: " << Proba::odchylenie() << endl;
+    cout << "Kurtoza: " << Proba::kurtoza() << endl;
+}
+
 void Proba::wyswietl() {
     for (int i = 0; i < dane.size(); i++) {
-        cout << dane[i] << " ";
+        cout << fixed << setprecision( 1 ) << dane[i] << " ";
     }
 }
 

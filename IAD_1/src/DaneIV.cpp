@@ -51,3 +51,7 @@ void DaneIV::wczytaj() {
     }
     plik.close();
 }
+
+DaneIV::DaneIV() {
+    this->gatunek="Iris-virginica";
+}

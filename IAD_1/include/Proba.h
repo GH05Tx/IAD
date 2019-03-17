@@ -23,6 +23,8 @@ public:
 
     void wyswietl();
 
+    void analizuj();
+
     double minimum();
 
     double maksimum();

@@ -10,6 +10,7 @@
 class DaneIV: public Dane {
 public:
     void wczytaj();
+    DaneIV();
 };
 typedef shared_ptr<DaneIV> DIV_ptr;
 
