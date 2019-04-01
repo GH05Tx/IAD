@@ -1,0 +1,249 @@
+\documentclass{classrep}
+\usepackage[utf8]{inputenc}
+\frenchspacing
+
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage[hidelinks]{hyperref}
+\usepackage{graphicx}
+
+\usepackage{amsmath, amssymb, mathtools}
+
+\usepackage{fancyhdr, lastpage}
+\pagestyle{fancyplain}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\cfoot{\thepage\ / \pageref*{LastPage}}
+
+
+\studycycle{Informatyka, studia dzienne, I st.}
+\coursesemester{IV}
+
+\coursename{Inteligentna Analiza Danych}
+\courseyear{2018/2019}
+
+\courseteacher{mgr inż. Paweł Tarasiuk}
+\coursegroup{poniedziałek, 12:15}
+
+\author{%
+  \studentinfo[216869@edu.p.lodz.pl]{Maciej Pracucik}{216869}\\
+  \studentinfo[216797@edu.p.lodz.pl]{Jan Klamka}{216797}%
+}
+
+\title{Zadanie 1.: Nazwa zadania}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancyplain}
+
+\section{Cel}
+{\color{black}
+
+Naszym zadaniem było, w zależności od wariantu, zaimplementowanie samoorganizującej się sieci neuronowej
+oraz/lub algorytmu k-średnich. Zdecydowaliśmy się na wykonanie sieci neuronowej,
+uczącej się za pomocą algorytmu Kohonena oraz algorytm k-średnich(Wariant na 4).}
+
+\section{Wprowadzenie}
+{\color{black}
+Algorytm k-średnich wykorzystywany jest przy analizie skupień, to znaczy wyszukiwaniu i wyodrębnianiu grup obiektów 
+podobnych. Dla dalszych potrzeb zadania wprowadźmy pojęcie centroidu - jest to reprezentant danej grupy skupień/środek danej grupy. 
+Zasady działania omawianego algorytmu są następujące: ustalamy liczbę skupień oraz wstępne środki skupień. Następnie obliczamy odległości 
+analizowanych obiektów od centroidów oraz przypisujemy je do skupień, do których ich odległość jest najmniejsza. Ustalamy nowe centroidy oraz 
+powtarzamy wcześniejsze kroki do spełnienia warunku zatrzymania.  
+Odległość wykorzystywana w algorytmie to tzw. odległość euklidesowa: 
+$
+d(a,b)=\sqrt{\sum_{i=1}^n((x_{iA}-y_{iB})^2)}
+$}
+
+\section{Opis implementacji}
+{\color{black}
+Do implementacji algorytmu k-średnich został wykorzystany język C++. Algorytm k-średnich zaimplementowany został jako algorytm 
+iteracyjny - warunkiem zatrzymania programu jest wykonanie się określonej liczby iteracji. 
+Opis poszczególnych klas:
+Punkt - reprezentantacja poszczególnego punktu, posiada wektor wczytanych wartości oraz zmienną "klaster",
+która w trakcie działania algorytmu przyporządkowuje dany punkt do konkretnego klastra.
+Klaster - pole "centroid" służy do przechowywania położenia obecnego centroidu danego skupienia. Klasa ta reprezentuje 
+pewien zbiór punktów.
+KSrednich - posiada wektory wszystkich punktów oraz klastrów wykorzystywanych w trakcie pracy programu. Ma 
+zaimplementowane między innymi metody takie jak:
+- euklides - obliczanie odległości z wykorzystaniem wzoru Euklidesa
+- ustawCentroidStart - przyporządkowuje w sposób losowy punkty stanowiące centroidy dla wszystkich wykorzystywanych klastrów.
+Punkty te należą do puli wszystkich, na których program wykonuje obliczenia. Metoda ta wykorzystana jest jednorazowo na początku programu 
+- liczCentroid - w odróżnieniu od "ustawCentroidStart" ta metoda używana jest przez cały czas pracy programu. Korzystając ze średniej arytmetycznej
+oblicza nowe położenia centroidów na podstawie umiejscowienia punktów należących do klastra. 
+Pozostałe klasy lub metody służą głównie wczytywaniu danych z plików tekstowych, wyświetlaniu obliczonych wartości dla możliwości 
+kontroli pracy programu lub są to gettery/settery. }
+
+\section{Materiały i metody}
+{\color{black}
+Dla sprawdzenia działania programu przeprowadziliśmy kilka badań, zmieniając za każdym razem testowane dane oraz liczbę iteracji.
+Efekty weryfikujemy dzięki wizualizacji graficznej - po każdej iteracji generowany jest wykres. W ten sposób jesteśmy w stanie 
+zweryfikować, jak zmienia się w czasie położenie centroidów oraz przynależność punktów do poszczególnych klastrów. 
+Rozróżnijmy poszczególne badania: 
+1. Badanie 
+- zbiór danych: Wina
+- liczba klastrów: 2
+- liczba iteracji: 50
+- wykres zależności zawartości naturalnych barwników od atrybutu: OD280/OD315 (zawartość protein) 
+
+2. Badanie 
+- zbiór danych: Iris
+- liczba klastrów: 3
+- liczba iteracji: 15
+- wykres zależności długości płatka od jego szerokości 
+
+3. Badanie 
+- zbiór danych: Abalones
+- liczba klastrów: 4
+- liczba iteracji: 200
+- wykres zależności wagi wnętrznści od długości ciała słuchotki}
+ 
+\section{Wyniki}
+{\color{black}
+1. Badanie 
+	Oś x przedstawia wartości naturalnych barwników (Flavanoids), natomiast oś y - wartość atrybutu OD280/OD315. 
+	\begin{figure}[htp]
+	\centering
+	\includegraphics[width=19cm]{wina1.png}
+	\caption{Wykres 1 - rozmieszczenie wszystkich punktów wraz z początkowym, losowym rozmieszczeniem centroidów. }
+	\label{fig:lion}
+	\end{figure}
+	
+	\begin{figure}[htp]
+	\centering
+	\includegraphics[width=19cm]{wina2.png}
+	\caption{Wykres 2 - wykonanie się pierwszej iteracji.}
+	\label{fig:lion}
+	\end{figure}
+	
+	\begin{figure}[htp]
+	\centering
+	\includegraphics[width=19cm]{wina3.png}
+	\caption{Wykres 3 - wykonanie się 10 iteracji.}
+	\label{fig:lion}
+	\end{figure}
+	
+	\begin{figure}[htp]
+	\centering
+	\includegraphics[width=19cm]{wina4.png}
+	\caption{Wykres 4 - wykonanie się 25 iteracji.}
+	\label{fig:lion}
+	\end{figure}
+	
+	\begin{figure}[htp]
+	\centering
+	\includegraphics[width=19cm]{wina5.png}
+	\caption{Wykres 5 - wykonanie się ostatniej iteracji.}
+	\label{fig:lion}
+	\end{figure}
+	
+2. Badanie 
+	Oś x przedstawia długości płatka irysa, natomiast oś y - ich szerokość.
+	\begin{figure}[htp]
+	\centering
+	\includegraphics[width=19cm]{irys1.png}
+	\caption{Wykres 1 - rozmieszczenie wszystkich punktów wraz z początkowym, losowym rozmieszczeniem centroidów.}
+	\label{fig:lion}
+	\end{figure}
+	
+	\begin{figure}[htp]
+	\centering
+	\includegraphics[width=19cm]{irys2.png}
+	\caption{Wykres 2 - wykonanie się pierwszej iteracji.}
+	\label{fig:lion}
+	\end{figure}
+	
+	\begin{figure}[htp]
+	\centering
+	\includegraphics[width=19cm]{irys3.png}
+	\caption{Wykres 3 - wykonanie się 10 iteracji.}
+	\label{fig:lion}
+	\end{figure}
+	
+	\begin{figure}[htp]
+	\centering
+	\includegraphics[width=19cm]{irys4.png}
+	\caption{Wykres 4 - wykonanie się ostatniej iteracji.}
+	\label{fig:lion}
+	\end{figure}
+
+3. Badanie 
+	Oś x przedstawia wagę wnętrznści słuchotek, natomiast oś y - ich długość ciała.
+	\begin{figure}[htp]
+	\centering
+	\includegraphics[width=19cm]{abalone1.png}
+	\caption{Wykres 1 - rozmieszczenie wszystkich punktów wraz z początkowym, losowym rozmieszczeniem centroidów.}
+	\label{fig:lion}
+	\end{figure}
+	
+	\begin{figure}[htp]
+	\centering
+	\includegraphics[width=19cm]{abalone2.png}
+	\caption{Wykres 2 - wykonanie się 10 iteracji.}
+	\label{fig:lion}
+	\end{figure}
+	
+	\begin{figure}[htp]
+	\centering
+	\includegraphics[width=19cm]{abalone3.png}
+	\caption{Wykres 3 - wykonanie się 50 iteracji.}
+	\label{fig:lion}
+	\end{figure}
+	
+	\begin{figure}[htp]
+	\centering
+	\includegraphics[width=19cm]{abalone4.png}
+	\caption{Wykres 4 - wykonanie się 100 iteracji }
+	\label{fig:lion}
+	\end{figure}
+	
+	\begin{figure}[htp]
+	\centering
+	\includegraphics[width=19cm]{abalone5.png}
+	\caption{Wykres 5 - wykonanie się ostatniej iteracji.}
+	\label{fig:lion}
+	\end{figure}
+}
+
+\section{Dyskusja}
+{\color{black}
+1. Badanie 
+Badana grupa posiadała 178 obiektów. Na podstawie wykresów można wywnioskować, że liczba iteracji była odpowiednia, a można 
+było nawet ją zmniejszyć, ponieważ najważniejsze zmiany nastąpiły w trakcie 10 pierwszych iteracji. Od 25 do 50 ułożenie punktów oraz centroidów nie 
+zmieniło się wcale bądź była to na tyle nieznaczna zmiana, że nie jesteśmy w stanie jej wychwycić wyłącznie na podstawie wykresów. Sugeruje to, 
+że jednym z czynników decydujących o dokładności działania algorytmu jest zachowanie odpowiedniej proporcji pomiędzy wielkością badanej zbiorowości 
+a długością pracy programu (w tym przypadku decyduje o tym ilość iteracji). W przypadku małych grup nie ma sensu przetwarzać je przez kilkaset iteracji. 
+Sugerując się jedynie wykresem można dojść do konkluzji, że punkty nie ułożyły się idealnie w zgrupowania, których liczba odpowiada liczbie centroidów, 
+lecz należy pamiętać, iż jest to zobrazowanie punktów, które mają więcej niż 2 wymiary - mogą więc się nakładać jedno na drugie i nie jest to jednoznaczne 
+z tym, że znajdują się w dokładnie tym samym miejscu.
+
+2. Badanie 
+Badana grupa posiadała 150 obiektów. Jak można odczytać z wykresów już w trakcie 10 pierwszych iteracji obiekty przyjęły swoje finalne ułożenie. Potwierdza to 
+słuszność wniosków płynących z poprzedniego badania. W tym przypadku punkty ułożyły się w sposób bardziej czytelny, sprzyja temu ułożenie punktów, w którym są 
+one bardziej wyizolowane od siebie. Można zauważyć widoczne przemieszczenie się 2 z 3 centroidów. Natomiast jeden z nich (oddalony najbardziej w lewą strone) mimo 
+tego, iż został umieszczony w sposób losowy niedość, że przemieścił się nieznacznie to oddał na rzecz innych klastrów jedynie kilka punktów. Pokazuje to, jak duży 
+wpływ na efektywność działania algorytmu ma odpowiednie rozmieszczenie centroidów na początku działania programu, lecz nie jest to równoznaczne z tym, że przypadkowe 
+losowanie tych rozmieszczeń to najefektywniejszy sposób - można to robić chociażby w oparciu o wcześniejsze analizy danej grupy. 
+
+3. Badanie
+Badana grupa posiadała 4177 obiektów, a więc o wiele więcej niż grupy badane poprzednio. Przełożyło się to znacznie na czytelność otrzymanych wyników - nakładające 
+się na siebie punkty utrudniają, a nawet uniemożliwiają sprawne odnotowywanie zmian. W odróżnieniu od poprzednich badań nie dało się już zauważyć zmiany przynależności
+poszczególnych punktów do danych klastrów. Dla lepszego zweryfikowania działania programu należałoby chociażby skorzystać z programu umożliwiającego tworzenie 
+wykresów z większą dokładnością bądź inaczej analizować ich przemieszczenie. W tym przypadku przez czytelność wyników ciężko o wniosek odnośnie stosunku liczby 
+iteracji do wielkości grupy.
+}
+\section{Wnioski}
+{\color{black}
+
+
+W tej, przedostatniej, sekcji należy zamieścić podsumowanie najważniejszych
+wniosków z sekcji poprzedniej. Najlepiej jest je po prostu wypunktować. Znów,
+tak jak poprzednio, najistotniejsze są wnioski o charakterze uniwersalnym.}
+
+\begin{thebibliography}{0}
+  \bibitem{l2short} T. Oetiker, H. Partl, I. Hyna, E. Schlegl.
+    \textsl{Nie za krótkie wprowadzenie do systemu \LaTeX2e}, 2007, dostępny
+    online.
+\end{thebibliography}
+
+\end{document}
