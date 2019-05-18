@@ -9,49 +9,34 @@ import java.util.List;
 
 public class Net {
     private List<Layer> layers;
-    private double eta;
-    private double momentum;
+    private double factor;      //wspolczynnik nauki
+    private double factorM;     //wspolczynnik momentum
     private double precision;
     private RealMatrix pattern;
-    private int iter;
+    private int rounds;
+    private int tmpArray[];
+    private int tmpBias;
 
-    public Net(double precision, int iter, int bias, double eta, double momentum, int[] tab, double[][] input, double[][] pattern) {
+    public Net(double precision, int rounds, int bias, double eta, double momentum, int[] array, double[][] data, double[][] pattern) {
         this.precision = precision;
-        this.iter = iter;
-        this.eta = eta;
-        this.momentum = momentum;
+        this.rounds = rounds;
+        this.factor = eta;
+        this.factorM = momentum;
+        this.tmpArray = array;
+        this.tmpBias = bias;
         layers = new ArrayList<Layer>();
         this.pattern = MatrixUtils.createRealMatrix(pattern);
         //dodajemy pierwszą warstwę neuronów (tą z danymi)
-        layers.add(new Layer(tab[0], tab[1], input, bias));
-
+        layers.add(new Layer(array[0], array[1], data, bias));
         //dodajemy wewnętrzne warstwy
-        for (int i = 1; i < tab.length - 1; i++) {
-            layers.add(new Layer(tab[i], tab[i + 1], bias, i, tab.length, input.length));
+        for (int i = 1; i < array.length - 1; i++) {
+            layers.add(new Layer(array[i], array[i + 1], bias, i, array.length, data.length));
         }
-
         //dodajemy ostatnią warstwę (tą bez wag)
-        layers.add(new Layer(tab[tab.length - 1], input.length));
-
-        //wypisuje ustawienia sieci
-        System.out.println("Ustawienia sieci:");
-        System.out.println("------------------------------");
-        System.out.println("liczba warstw: " + layers.size());
-        for (int i = 0; i < tab.length; i++) {
-            System.out.println("liczba neuronów w warstwie " + (i + 1) + ": " + tab[i]);
-        }
-        if (bias == 0) {
-            System.out.println("bias: NIE");
-        } else {
-            System.out.println("bias: TAK");
-        }
-        System.out.println("współczynnik nauki: " + eta);
-        System.out.println("współczynnik momentum: " + momentum);
-        System.out.println("------------------------------");
+        layers.add(new Layer(array[array.length - 1], data.length));
     }
 
     public void learn() {
-        Date before = new Date();
         //index ostatniej warstwy
         int last = layers.size() - 1;
         //lista błędów do narysowania wykresu
@@ -62,7 +47,7 @@ public class Net {
 
         System.out.println("Bład wypisywany co 500 epok:");
 
-        for (int i = 0; i < iter; i++) {
+        for (int i = 0; i < rounds; i++) {
             //zapisanie delty z poprzedniej iteracji
             if (i > 0) {
                 for (int j = 1; j < last; j++) {
@@ -74,7 +59,7 @@ public class Net {
                 //neurony z warstwy j+1 = neurony z warstwy j * wagi tych neuronów
                 layers.get(j + 1).setNeurons(layers.get(j).getNeurons().multiply(layers.get(j).getWeights()));
                 //funkcja aktywacji
-                layers.get(j + 1).useActivateFun();
+                layers.get(j + 1).activate();
                 layers.get(j + 1).setBias();
             }
 
@@ -82,12 +67,12 @@ public class Net {
             layers.get(last).setError(pattern.subtract(layers.get(last).getNeurons()));
 
             //i zapisujemy go do listy błędów (żeby narysowć później wykres)
-            errors.add(layers.get(last).getAvgError());
+            errors.add(layers.get(last).aveError());
 
-            if (layers.get(last).getAvgError() < precision) {
+            if (layers.get(last).aveError() < precision) {
                 System.out.println("Błąd mniejszy niż " + precision);
                 System.out.println("Sieć nauczona po " + i + " iteracjach");
-                System.out.println("Błąd: " + layers.get(last).getAvgError());
+                System.out.println("Błąd: " + layers.get(last).aveError());
                 break;
             }
 
@@ -113,13 +98,13 @@ public class Net {
             //aktualizowanie wag warstw wewnętrznych i wag warstwy pierwszej
             //wagi warstwy j += eta * (macierz neuronów warstwy j (transponowana) * delta warstwy j+1)
             //					+ momentum * (macierz neuronów warstwy j(transponowana) * delta warstwy j+1 z poprzedniej iteracji)
-            if (momentum == 0 || i == 0) {
+            if (factorM == 0 || i == 0) {
                 for (int j = last - 1; j >= 0; j--) {
-                    layers.get(j).updateWeights(layers.get(j + 1).getDelta(), eta);
+                    layers.get(j).updateWeights(layers.get(j + 1).getDelta(), factor);
                 }
             } else {
                 for (int j = last - 1; j >= 0; j--) {
-                    layers.get(j).updateWeights(layers.get(j + 1).getDelta(), layers.get(j + 1).getLastDelta(), eta, momentum);
+                    layers.get(j).updateWeights(layers.get(j + 1).getDelta(), layers.get(j + 1).getLastDelta(), factor, factorM);
                 }
             }
 
@@ -128,39 +113,53 @@ public class Net {
         System.out.println("------------------------------");
         //wypisanie co obliczyła sieć a co powinno być
         System.out.println(printResult());
-        //rysowanie wykresu
+
+        //GENEROWANIE WYKRESU
         Graph draw = new Graph();
         int run = 1;
         draw.drawPlot(errors, run);
         run++;
-//        plotter.drawPlot(errors2,run);
-//        zapis sieci do pliku
-        saveNetworkToFile();
+        //ZAPIS SIECI DO PLIKU
+        saveNet();
 
-        //zapis błędów do pliku
-        PrintWriter pw = null;
+        //GENEROWANIE RAPORTU Z DANEGO PROCESU NAUKI
+        PrintWriter saver = null;
         try {
-            pw = new PrintWriter("data/tryb_nauki_bledy.txt");
+            saver = new PrintWriter("results/RAPORT_NAUKA.txt");
+            saver.println("\tRAPORT Z PROCESU NAUKI");
+            saver.println();
+            saver.println("CHARAKTERYSTYKA SIECI");
+            saver.println("- Liczba warstw: " + tmpArray.length);
+            for (int i = 0; i < layers.size(); i++) {
+                saver.println("- Uklad neuronow na warstwach: " + tmpArray[i]);
+            }
+            if (tmpBias == 1) saver.println("- Bias wykorzystywany");
+            else if (tmpBias == 0) saver.println("- Bias niewykorzystywany");
+            saver.println("- Wartość wspołczynnika nauki: " + factor);
+            saver.println("- Wartość wspołczynnika momentum: " + factorM);
+            saver.println("- Liczba cykli: " + rounds);
+            saver.println();
+            saver.println("BŁĘDY OBLICZONE W KOLEJNYCH CYKLACH");
             for (Double err : errors) {
-                pw.println(err);
+                saver.println(err);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } finally {
-            pw.close();
+            saver.close();
         }
 
     }
 
     public double test() {
         String data = "";
-        readNetworkFromFile();
+        readNet();
         System.out.println("****** TRYB TESTOWANIA ******");
         for (int j = 0; j < layers.size() - 1; j++) {
             //neurony z warstwy j+1 = neurony z warstwy j * wagi tych neuronów
             layers.get(j + 1).setNeurons(layers.get(j).getNeurons().multiply(layers.get(j).getWeights()));
             //funkcja aktywacji
-            layers.get(j + 1).useActivateFun();
+            layers.get(j + 1).activate();
             layers.get(j + 1).setBias();
         }
 
@@ -176,47 +175,44 @@ public class Net {
 //        }
 
         System.out.println(data);
-        //zapis raportu do pliku
-        PrintWriter out = null;
+        PrintWriter saver = null;
         try {
-            out = new PrintWriter("data/tryb_testowy_raport.txt");
-            out.println(data);
+            saver = new PrintWriter("results/RAPORT_TEST.txt");
+            saver.println(data);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } finally {
-            out.close();
+            saver.close();
         }
-        return layers.get(layers.size() - 1).getAvgError();
+        return layers.get(layers.size() - 1).aveError();
     }
 
-    public void saveNetworkToFile() {
-        ObjectOutputStream out = null;
+    public void saveNet() {
+        ObjectOutputStream saver = null;
         try {
-            out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("data/network")));
+            saver = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("results/net")));
             for (Layer item : layers) {
-                out.writeObject(item);
+                saver.writeObject(item);
             }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             try {
-                out.close();
+                saver.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public void readNetworkFromFile() {
-        ObjectInputStream in = null;
+    public void readNet() {
+        ObjectInputStream reader = null;
         //czyścimy zainicjalizowaną przez konstruktor listę
         layers.clear();
-
-        //odczyt
         try {
-            in = new ObjectInputStream(new BufferedInputStream(new FileInputStream("data/network")));
+            reader = new ObjectInputStream(new BufferedInputStream(new FileInputStream("results/net")));
             while (true) {
-                layers.add((Layer) in.readObject());
+                layers.add((Layer) reader.readObject());
             }
         } catch (EOFException e) {
         } catch (IOException e) {
@@ -225,7 +221,7 @@ public class Net {
             e.printStackTrace();
         } finally {
             try {
-                in.close();
+                reader.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -250,17 +246,17 @@ public class Net {
         for (int i = 0; i < matrix.getRowDimension(); i++) {
             int index2 = -1;
             double distance = 1;
-            if (Math.abs(myNumber - matrix.getEntry(i, 0)) < distance){
+            if (Math.abs(myNumber - matrix.getEntry(i, 0)) < distance) {
                 index2 = 0;
-                distance= Math.abs(myNumber - matrix.getEntry(i, 0));
+                distance = Math.abs(myNumber - matrix.getEntry(i, 0));
             }
-            if (Math.abs(myNumber - matrix.getEntry(i, 1)) < distance){
+            if (Math.abs(myNumber - matrix.getEntry(i, 1)) < distance) {
                 index2 = 1;
-                distance= Math.abs(myNumber - matrix.getEntry(i, 1));
+                distance = Math.abs(myNumber - matrix.getEntry(i, 1));
             }
-            if (Math.abs(myNumber - matrix.getEntry(i, 2)) < distance){
+            if (Math.abs(myNumber - matrix.getEntry(i, 2)) < distance) {
                 index2 = 2;
-                distance= Math.abs(myNumber - matrix.getEntry(i, 2));
+                distance = Math.abs(myNumber - matrix.getEntry(i, 2));
             }
 
             result.add(index2);

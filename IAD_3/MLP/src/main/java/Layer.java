@@ -61,22 +61,6 @@ public class Layer implements Serializable {
         this.lastDelta = MatrixUtils.createRealMatrix(dataLength,numberOfNeurons);
     }
 
-    public RealMatrix getNeurons() {
-        return neurons;
-    }
-
-    public void setNeurons(RealMatrix neurons) {
-        this.neurons = neurons;
-    }
-
-    public RealMatrix getWeights() {
-        return weights;
-    }
-
-    public void setWeights(RealMatrix weights) {
-        this.weights = weights;
-    }
-
     public void setRandomValues() {
         Random r = new Random();
         for(int i=0; i < weights.getRowDimension(); i++) {
@@ -86,23 +70,10 @@ public class Layer implements Serializable {
         }
     }
 
-    public RealMatrix getError() {
-        return error;
-    }
-
-    public void setError(RealMatrix error) {
-        this.error = error;
-    }
-
-    public RealMatrix getDelta() {
-        return delta;
-    }
-
     public void setDelta() {
         for(int i=0; i<delta.getRowDimension(); i++) {
             for(int j=0; j<delta.getColumnDimension(); j++) {
-                delta.setEntry(i, j,
-                        error.getEntry(i, j) * fd(neurons.getEntry(i, j)));
+                delta.setEntry(i, j, error.getEntry(i, j) * fd(neurons.getEntry(i, j)));
             }
         }
 
@@ -112,7 +83,7 @@ public class Layer implements Serializable {
         return x * (1 - x);
     }
 
-    public void useActivateFun() {
+    public void activate() {
         double x;
         for(int i=0; i<neurons.getRowDimension(); i++) {
             for(int j=0; j<neurons.getColumnDimension(); j++) {
@@ -137,15 +108,15 @@ public class Layer implements Serializable {
     }
 
     //wypisuje średni błąd
-    public double getAvgError() {
-        double sum = 0;
-        for(int i=0; i<error.getRowDimension(); i++) {
-            for(int j=0; j<error.getColumnDimension(); j++) {
-                sum += Math.abs(error.getEntry(i, j));
+    public double aveError() {
+        double tmp = 0;
+        int row = error.getRowDimension(), column=error.getColumnDimension();
+        for(int i=0; i<row; i++) {
+            for(int j=0; j<column; j++) {
+                tmp += Math.abs(error.getEntry(i, j));
             }
         }
-
-        return sum / (error.getColumnDimension() * error.getRowDimension());
+        return tmp / (column * row);
     }
 
     public double getValue() {
@@ -157,24 +128,16 @@ public class Layer implements Serializable {
         return sum/neurons.getRowDimension();
     }
 
-    public RealMatrix getLastDelta() {
-        return lastDelta;
-    }
-
-    public void setLastDelta(RealMatrix lastDelta) {
-        this.lastDelta = lastDelta;
-    }
-
     //wypisuje ładnie macierz
     public String print(RealMatrix m) {
-        String data = "";
+        String tmp = "";
         for(int i=0; i<m.getRowDimension(); i++) {
             for(int j=0; j<m.getColumnDimension(); j++) {
-                data += String.format("%.4f", m.getEntry(i, j)) + " ";
+                tmp += String.format("%.4f", m.getEntry(i, j)) + " ";
             }
-            data += "\n";
+            tmp += "\n";
         }
-        return data;
+        return tmp;
     }
 
     public void setBias() {
@@ -183,6 +146,42 @@ public class Layer implements Serializable {
                 neurons.setEntry(i, neurons.getColumnDimension()-1, 1);
             }
         }
+    }
+
+    public RealMatrix getError() {
+        return error;
+    }
+
+    public void setError(RealMatrix error) {
+        this.error = error;
+    }
+
+    public RealMatrix getDelta() {
+        return delta;
+    }
+
+    public RealMatrix getLastDelta() {
+        return lastDelta;
+    }
+
+    public void setLastDelta(RealMatrix lastDelta) {
+        this.lastDelta = lastDelta;
+    }
+
+    public RealMatrix getNeurons() {
+        return neurons;
+    }
+
+    public void setNeurons(RealMatrix neurons) {
+        this.neurons = neurons;
+    }
+
+    public RealMatrix getWeights() {
+        return weights;
+    }
+
+    public void setWeights(RealMatrix weights) {
+        this.weights = weights;
     }
 }
 
