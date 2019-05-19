@@ -13,41 +13,41 @@ public class Layer implements Serializable {
     private int bias;
 
     //WARSTWA WEJŚCIA
-    public Layer(int numberOfNeurons, int outputs, double[][] data, int bias) {
+    public Layer(int nrNeurons, int outputs, double[][] content, int bias) {
         this.bias = bias;
         if(bias == 0) {
-            this.neurons = MatrixUtils.createRealMatrix(data);
+            this.neurons = MatrixUtils.createRealMatrix(content);
         } else {
             //ustawienie wartości biasu na 1
-            this.neurons = MatrixUtils.createRealMatrix(data.length,numberOfNeurons+bias);
+            this.neurons = MatrixUtils.createRealMatrix(content.length,nrNeurons+bias);
             for(int i=0; i<neurons.getRowDimension(); i++) {
                 for(int j=0; j<neurons.getColumnDimension(); j++) {
                     try {
-                        neurons.setEntry(i, j, data[i][j]);
+                        neurons.setEntry(i, j, content[i][j]);
                     } catch (IndexOutOfBoundsException e) {
                         neurons.setEntry(i, j, 1);
                     }
                 }
             }
         }
-        this.inputWeights = MatrixUtils.createRealMatrix(numberOfNeurons+bias, outputs+bias);
+        this.inputWeights = MatrixUtils.createRealMatrix(nrNeurons+bias, outputs+bias);
         randomWeights();
     }
 
     //WARSTWY UKRYTE
-    public Layer(int numberOfNeurons, int outputs, int bias, int i, int numberOfLayers, int dataLength) {
+    public Layer(int nrNeurons, int outputs, int bias, int i, int nrLayers, int dataLength) {
         this.bias = bias;
-        this.neurons = MatrixUtils.createRealMatrix(dataLength,numberOfNeurons+bias);
+        this.neurons = MatrixUtils.createRealMatrix(dataLength,nrNeurons+bias);
         //jeżeli jest to przedostatnia warstwa to przy ustalaniu wag nie bierzemy biasu pod uwagę (bo ostatnia warstwa nie ma biasu)
-        if(i==numberOfLayers-2) {
-            this.inputWeights = MatrixUtils.createRealMatrix(numberOfNeurons+bias, outputs);
+        if(i==nrLayers-2) {
+            this.inputWeights = MatrixUtils.createRealMatrix(nrNeurons+bias, outputs);
         } else {
-            this.inputWeights = MatrixUtils.createRealMatrix(numberOfNeurons+bias, outputs+bias);
+            this.inputWeights = MatrixUtils.createRealMatrix(nrNeurons+bias, outputs+bias);
         }
         randomWeights();
-        this.delta = MatrixUtils.createRealMatrix(dataLength,numberOfNeurons+bias);
-        this.error = MatrixUtils.createRealMatrix(dataLength,numberOfNeurons+bias);
-        this.lastDelta = MatrixUtils.createRealMatrix(dataLength,numberOfNeurons+bias);
+        this.delta = MatrixUtils.createRealMatrix(dataLength,nrNeurons+bias);
+        this.error = MatrixUtils.createRealMatrix(dataLength,nrNeurons+bias);
+        this.lastDelta = MatrixUtils.createRealMatrix(dataLength,nrNeurons+bias);
     }
 
     //WARSTWA WYJŚCIA
@@ -60,10 +60,10 @@ public class Layer implements Serializable {
     }
 
     public void randomWeights() {
-        Random r = new Random();
+        Random rand = new Random();
         for(int i=0; i < inputWeights.getRowDimension(); i++) {
             for(int j=0; j < inputWeights.getColumnDimension(); j++) {
-                inputWeights.setEntry(i, j, r.nextDouble()*2.0-1.0);
+                inputWeights.setEntry(i, j, rand.nextDouble()*2.0-1.0);
             }
         }
     }

@@ -15,15 +15,10 @@ public class Net {
     private double precision;
     private RealMatrix pattern;
     private List<Layer> layers;
+    private int stop;
+    private int safeStop;       //bezpieczny warunek stopu - w przypadku nie spełnienia określonej precyzji
 
-    public Net(double prec, int rounds, int bias, double factor, double factorM, int[] array, double[][] data, double[][] pattern) {
-        this.precision = prec;
-        this.rounds = rounds;
-        this.factor = factor;
-        this.factorM = factorM;
-        this.tmpArray = array;
-        this.tmpBias = bias;
-
+    public Net(double prec, int rounds, int bias, double factor, double factorM, int[] array, double[][] data, double[][] pattern, int stop) {
         layers = new ArrayList<Layer>();
         this.pattern = MatrixUtils.createRealMatrix(pattern);
         //dodajemy pierwszą warstwę neuronów (tą z danymi)
@@ -34,19 +29,31 @@ public class Net {
         }
         //dodajemy ostatnią warstwę (tą bez wag)
         layers.add(new Layer(array[array.length - 1], data.length));
+        this.precision = prec;
+        this.rounds = rounds;
+        this.factor = factor;
+        this.factorM = factorM;
+        this.tmpArray = array;
+        this.tmpBias = bias;
+        this.safeStop = 50000;
+        this.stop=stop;
     }
 
     public void learn() {
         //index ostatniej warstwy
         int last = layers.size() - 1;
         List<Double> calc = new ArrayList<Double>();
-        //List<Double> errors2 = new ArrayList<Double>();
+        List<Double> file = new ArrayList<Double>();
 
         System.out.println("\tNAUKA SIECI");
 
         System.out.println("Bład wypisywany co 500 epok:");
 
-        for (int i = 0; i < rounds; i++) {
+        int iterMax, i=0;
+        if(stop==0) { iterMax=safeStop; }
+        else { iterMax=rounds; }
+
+        do {
             //zapisanie delty z poprzedniej iteracji
             if (i > 0) {
                 for (int j = 1; j < last; j++) {
@@ -62,11 +69,12 @@ public class Net {
                 layers.get(j + 1).setBias();
             }
 
-            //obliczamy błąd ostatniej warstwy (wzorzec - neurony warstwy ostatniej)
+            //obliczenie błędu w każdej epoce
+            //następnie dodanie go do listy na potrzeby późniejszych działań
             layers.get(last).setError(pattern.subtract(layers.get(last).getNeurons()));
-
-            //i zapisujemy go do listy błędów (żeby narysowć później wykres)
             calc.add(layers.get(last).aveError());
+
+            if(i%100==0) { file.add(layers.get(last).aveError());}
 
             if (layers.get(last).aveError() < precision) {
                 System.out.println("Błąd mniejszy niż " + precision);
@@ -106,12 +114,12 @@ public class Net {
                     layers.get(j).calcWeights(layers.get(j + 1).getDelta(), layers.get(j + 1).getLastDelta(), factor, factorM);
                 }
             }
-
-        }
+        i++;
+        } while (i<iterMax || layers.get(last).aveError() < precision);
 
         System.out.println("------------------------------");
         //wypisanie co obliczyła sieć a co powinno być
-        System.out.println(printResult());
+        System.out.println(calcStat());
 
         //GENEROWANIE WYKRESU
         Graph draw = new Graph();
@@ -128,17 +136,17 @@ public class Net {
             saver.println();
             saver.println("CHARAKTERYSTYKA SIECI");
             saver.println("- Liczba warstw: " + tmpArray.length);
-            for (int i = 0; i < layers.size(); i++) {
-                saver.println("- Uklad neuronow na warstwach: " + tmpArray[i]);
+            for (int j = 0; i < layers.size(); i++) {
+                saver.println("- Uklad neuronow na warstwach: " + tmpArray[j]);
             }
             if (tmpBias == 1) saver.println("- Bias wykorzystywany");
             else if (tmpBias == 0) saver.println("- Bias niewykorzystywany");
             saver.println("- Wartość wspołczynnika nauki: " + factor);
             saver.println("- Wartość wspołczynnika momentum: " + factorM);
-            saver.println("- Liczba cykli: " + rounds);
+            saver.println("- Liczba epok: " + rounds);
             saver.println();
-            saver.println("BŁĘDY OBLICZONE W KOLEJNYCH CYKLACH");
-            for (Double err : calc) {
+            saver.println("BŁĘDY OBLICZONE CO 100 EPOK");
+            for (Double err : file) {
                 saver.println(err);
             }
         } catch (FileNotFoundException e) {
@@ -160,16 +168,7 @@ public class Net {
             layers.get(j + 1).setBias();
         }
 
-        data += printResult() + "-------------------------------\n";
-//        data += "Błąd: " + layers.get(layers.size()-1).getAvgError() + "\n-------------------------------\n";
-//        for(int i=layers.size()-1; i>=0; i--) {
-//            data += "Warstwa " + (i+1) + ": \n";
-//            data += "Wyjście:\n" + layers.get(i).print(layers.get(i).getNeurons());
-//            if(i < layers.size()-1) {
-//                data += "Wagi:\n" + layers.get(i).print(layers.get(i).getWeights());
-//            }
-//            data += "-------------------------------\n";
-//        }
+        data += calcStat() + "-------------------------------\n";
         System.out.println(data);
         PrintWriter saver = null;
         try {
@@ -235,7 +234,7 @@ public class Net {
             return 2;
     }
 
-    public String printResult() {
+    public String calcStat() {
         String data = layers.get(layers.size() - 1).print(layers.get(layers.size() - 1).getNeurons());
         RealMatrix matrix = layers.get(layers.size() - 1).getNeurons();
         double myNumber = 1.0;
