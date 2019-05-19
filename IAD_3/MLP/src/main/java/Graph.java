@@ -10,26 +10,22 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
 public class Graph {
-    public static void drawPlot(List<Double> errors, int run) {
+    public static void drawPlot(List<Double> list) {
         double x = 0;
         XYSeries series = new XYSeries("");
-
-        for (int i = 0; i < errors.size(); i++) {
-            series.add(x, errors.get(i));
+        for (int i = 0; i < list.size(); i++) {
+            series.add(x, list.get(i));
             x++;
         }
         XYSeriesCollection content = new XYSeriesCollection();
         content.addSeries(series);
-        JFreeChart chart = ChartFactory.createXYLineChart("Wykres zależnosci wartości błędu od ilości iteracji", "Ilość iteracji", "Wartość błędu", content, PlotOrientation.VERTICAL, true, true, false);
-        chart.getXYPlot().setDomainGridlinePaint(Color.blue);
-        chart.getXYPlot().setRangeGridlinePaint(Color.blue);
+        JFreeChart chart = ChartFactory.createXYLineChart("Wykres zależnosci wartości błędu od ilości iteracji", "Ilość iteracji", "Wartość błędu", content, PlotOrientation.VERTICAL, true, false, false);
         XYItemRenderer renderer = chart.getXYPlot().getRenderer();
         renderer.setSeriesPaint(0, Color.green);
         try {
-            final ChartRenderingInfo descript = new ChartRenderingInfo(new StandardEntityCollection());
-            final File graphic = new File("results/graph" + run + ".jpg");
-            ChartUtils.saveChartAsJPEG(graphic, chart, 500, 400, descript);
-
+            final ChartRenderingInfo description = new ChartRenderingInfo(new StandardEntityCollection());
+            final File graphic = new File("results/graph.jpg");
+            ChartUtils.saveChartAsJPEG(graphic, chart, 600, 400, description);
         } catch (Exception e) {}
     }
 }

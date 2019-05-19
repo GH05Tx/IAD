@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        /*
         Scanner scan = new Scanner(System.in);
         System.out.println("KONFIGURACJA SIECI");
         //System.out.println("Okresl tryb pracy - nauka/testowanie: [n/t] ");
@@ -25,17 +26,28 @@ public class Main {
         double prec = scan.nextDouble();
         System.out.println("Okresl liczbe cykli: ");
         int round = scan.nextInt();
+        */
 
-        DataReader data = new DataReader("data/iris_learn.csv");
-        Net network = new Net(prec, round, choiceBias, factor, factorM, array, data.getInput(), data.getPattern());
-        network.learn();
-        System.out.println();
-        network.test();
+        double prec=0.18, factor=0.01, factorM=0;
+        int round=9000, choiceBias=1;
+        int[] array = {4,2,3};
+
+        DataReader dataLearn = new DataReader("data/irys_learn.txt");
+        Net network1 = new Net(prec, round, choiceBias, factor, factorM, array, dataLearn.getInput(), dataLearn.getPattern());
+        network1.learn();
+
+
+/*
+        DataReader dataTest = new DataReader("data/irys_test.txt");
+        Net network2 = new Net(prec, round, choiceBias, factor, factorM, array, dataTest.getInput(), dataTest.getPattern());
+        network2.test();
+
+ */
         /*
         switch (choiceWork) {
             case "n":
             case "N": {
-                data = new DataReader("data/iris_learn.csv");
+                data = new DataReader("data/irys_learn.txt");
                 //data = new DataReader("data/seeds_learn.csv");
                 Net network = new Net(prec, round, choiceBias, factor, factorM, array, data.getInput(), data.getPattern());
                 network.learn();
@@ -44,7 +56,7 @@ public class Main {
 
             case "t":
             case "T": {
-                data = new DataReader("data/iris_test.csv");
+                data = new DataReader("data/irys_test.txt");
                 //data = new DataReader("data/seeds_test.csv");
                 Net network = new Net(prec, round, choiceBias, factor, factorM, array, data.getInput(), data.getPattern());
                 network.test();

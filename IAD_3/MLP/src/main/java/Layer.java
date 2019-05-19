@@ -6,13 +6,13 @@ import java.util.Random;
 
 public class Layer implements Serializable {
     private RealMatrix neurons;
-    private RealMatrix weights;
+    private RealMatrix inputWeights;
     private RealMatrix error;
     private RealMatrix delta;
     private RealMatrix lastDelta; //delta z poprzedniej iteracji
     private int bias;
 
-    //konstruktor dla warstwy pierwszej (z danymi wejściowymi)
+    //WARSTWA WEJŚCIA
     public Layer(int numberOfNeurons, int outputs, double[][] data, int bias) {
         this.bias = bias;
         if(bias == 0) {
@@ -30,29 +30,27 @@ public class Layer implements Serializable {
                 }
             }
         }
-
-        this.weights = MatrixUtils.createRealMatrix(numberOfNeurons+bias, outputs+bias);
-        setRandomValues();
+        this.inputWeights = MatrixUtils.createRealMatrix(numberOfNeurons+bias, outputs+bias);
+        randomWeights();
     }
 
-    //konstruktor dla wewnętrznych warstw
+    //WARSTWY UKRYTE
     public Layer(int numberOfNeurons, int outputs, int bias, int i, int numberOfLayers, int dataLength) {
         this.bias = bias;
         this.neurons = MatrixUtils.createRealMatrix(dataLength,numberOfNeurons+bias);
         //jeżeli jest to przedostatnia warstwa to przy ustalaniu wag nie bierzemy biasu pod uwagę (bo ostatnia warstwa nie ma biasu)
         if(i==numberOfLayers-2) {
-            this.weights = MatrixUtils.createRealMatrix(numberOfNeurons+bias, outputs);
+            this.inputWeights = MatrixUtils.createRealMatrix(numberOfNeurons+bias, outputs);
         } else {
-            this.weights = MatrixUtils.createRealMatrix(numberOfNeurons+bias, outputs+bias);
+            this.inputWeights = MatrixUtils.createRealMatrix(numberOfNeurons+bias, outputs+bias);
         }
-        setRandomValues();
-
+        randomWeights();
         this.delta = MatrixUtils.createRealMatrix(dataLength,numberOfNeurons+bias);
         this.error = MatrixUtils.createRealMatrix(dataLength,numberOfNeurons+bias);
         this.lastDelta = MatrixUtils.createRealMatrix(dataLength,numberOfNeurons+bias);
     }
 
-    //konstruktor dla ostatniej warstwy
+    //WARSTWA WYJŚCIA
     public Layer(int numberOfNeurons, int dataLength) {
         this.bias = 0;
         this.neurons = MatrixUtils.createRealMatrix(dataLength,numberOfNeurons);
@@ -61,11 +59,11 @@ public class Layer implements Serializable {
         this.lastDelta = MatrixUtils.createRealMatrix(dataLength,numberOfNeurons);
     }
 
-    public void setRandomValues() {
+    public void randomWeights() {
         Random r = new Random();
-        for(int i=0; i < weights.getRowDimension(); i++) {
-            for(int j=0; j < weights.getColumnDimension(); j++) {
-                weights.setEntry(i, j, r.nextDouble()*2.0-1.0);
+        for(int i=0; i < inputWeights.getRowDimension(); i++) {
+            for(int j=0; j < inputWeights.getColumnDimension(); j++) {
+                inputWeights.setEntry(i, j, r.nextDouble()*2.0-1.0);
             }
         }
     }
@@ -76,7 +74,6 @@ public class Layer implements Serializable {
                 delta.setEntry(i, j, error.getEntry(i, j) * fd(neurons.getEntry(i, j)));
             }
         }
-
     }
 
     public double fd(double x) {
@@ -94,21 +91,19 @@ public class Layer implements Serializable {
 
     }
 
-    //aktualizowanie wag bez momentum
-    public void updateWeights(RealMatrix delta, double eta) {
-
-        weights = weights.add(((neurons.transpose().multiply(delta)).scalarMultiply(eta)));
+    public void calcWeights(RealMatrix value, double factor) {
+        //obliczenie wartości wag bez uwzględnienia współczynnika momentum
+        inputWeights = inputWeights.add(((neurons.transpose().multiply(value)).scalarMultiply(factor)));
     }
 
-    //aktualizowanie wag z momentum
-    public void updateWeights(RealMatrix delta, RealMatrix lastDelta, double eta, double momentum) {
-
-        weights = weights.add(((neurons.transpose().multiply(delta)).scalarMultiply(eta))
-                .add((neurons.transpose().multiply(lastDelta)).scalarMultiply(momentum)));
+    public void calcWeights(RealMatrix value, RealMatrix lastValue, double factor, double factorM) {
+        //obliczenie wartości wag z uwzględnieniem współczynnika momentum
+        inputWeights = inputWeights.add(((neurons.transpose().multiply(value)).scalarMultiply(factor))
+                .add((neurons.transpose().multiply(lastValue)).scalarMultiply(factorM)));
     }
 
-    //wypisuje średni błąd
     public double aveError() {
+        //zwraca błąd średni
         double tmp = 0;
         int row = error.getRowDimension(), column=error.getColumnDimension();
         for(int i=0; i<row; i++) {
@@ -124,7 +119,6 @@ public class Layer implements Serializable {
         for(int i=0; i<neurons.getRowDimension(); i++) {
             sum += neurons.getEntry(i, 0);
         }
-
         return sum/neurons.getRowDimension();
     }
 
@@ -177,11 +171,11 @@ public class Layer implements Serializable {
     }
 
     public RealMatrix getWeights() {
-        return weights;
+        return inputWeights;
     }
 
     public void setWeights(RealMatrix weights) {
-        this.weights = weights;
+        this.inputWeights = weights;
     }
 }
 

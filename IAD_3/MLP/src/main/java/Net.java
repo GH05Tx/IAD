@@ -1,29 +1,29 @@
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
-
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Net {
-    private List<Layer> layers;
+
+    private int rounds;
+    private int tmpArray[];
+    private int tmpBias;
     private double factor;      //wspolczynnik nauki
     private double factorM;     //wspolczynnik momentum
     private double precision;
     private RealMatrix pattern;
-    private int rounds;
-    private int tmpArray[];
-    private int tmpBias;
+    private List<Layer> layers;
 
-    public Net(double precision, int rounds, int bias, double eta, double momentum, int[] array, double[][] data, double[][] pattern) {
-        this.precision = precision;
+    public Net(double prec, int rounds, int bias, double factor, double factorM, int[] array, double[][] data, double[][] pattern) {
+        this.precision = prec;
         this.rounds = rounds;
-        this.factor = eta;
-        this.factorM = momentum;
+        this.factor = factor;
+        this.factorM = factorM;
         this.tmpArray = array;
         this.tmpBias = bias;
+
         layers = new ArrayList<Layer>();
         this.pattern = MatrixUtils.createRealMatrix(pattern);
         //dodajemy pierwszą warstwę neuronów (tą z danymi)
@@ -39,11 +39,10 @@ public class Net {
     public void learn() {
         //index ostatniej warstwy
         int last = layers.size() - 1;
-        //lista błędów do narysowania wykresu
-        List<Double> errors = new ArrayList<Double>();
-        List<Double> errors2 = new ArrayList<Double>();
+        List<Double> calc = new ArrayList<Double>();
+        //List<Double> errors2 = new ArrayList<Double>();
 
-        System.out.println("********** TRYB NAUKI **********");
+        System.out.println("\tNAUKA SIECI");
 
         System.out.println("Bład wypisywany co 500 epok:");
 
@@ -67,7 +66,7 @@ public class Net {
             layers.get(last).setError(pattern.subtract(layers.get(last).getNeurons()));
 
             //i zapisujemy go do listy błędów (żeby narysowć później wykres)
-            errors.add(layers.get(last).aveError());
+            calc.add(layers.get(last).aveError());
 
             if (layers.get(last).aveError() < precision) {
                 System.out.println("Błąd mniejszy niż " + precision);
@@ -100,11 +99,11 @@ public class Net {
             //					+ momentum * (macierz neuronów warstwy j(transponowana) * delta warstwy j+1 z poprzedniej iteracji)
             if (factorM == 0 || i == 0) {
                 for (int j = last - 1; j >= 0; j--) {
-                    layers.get(j).updateWeights(layers.get(j + 1).getDelta(), factor);
+                    layers.get(j).calcWeights(layers.get(j + 1).getDelta(), factor);
                 }
             } else {
                 for (int j = last - 1; j >= 0; j--) {
-                    layers.get(j).updateWeights(layers.get(j + 1).getDelta(), layers.get(j + 1).getLastDelta(), factor, factorM);
+                    layers.get(j).calcWeights(layers.get(j + 1).getDelta(), layers.get(j + 1).getLastDelta(), factor, factorM);
                 }
             }
 
@@ -116,9 +115,8 @@ public class Net {
 
         //GENEROWANIE WYKRESU
         Graph draw = new Graph();
-        int run = 1;
-        draw.drawPlot(errors, run);
-        run++;
+        draw.drawPlot(calc);
+
         //ZAPIS SIECI DO PLIKU
         saveNet();
 
@@ -140,7 +138,7 @@ public class Net {
             saver.println("- Liczba cykli: " + rounds);
             saver.println();
             saver.println("BŁĘDY OBLICZONE W KOLEJNYCH CYKLACH");
-            for (Double err : errors) {
+            for (Double err : calc) {
                 saver.println(err);
             }
         } catch (FileNotFoundException e) {
@@ -148,13 +146,12 @@ public class Net {
         } finally {
             saver.close();
         }
-
     }
 
     public double test() {
         String data = "";
         readNet();
-        System.out.println("****** TRYB TESTOWANIA ******");
+        System.out.println("\tTESTOWANIE SIECI");
         for (int j = 0; j < layers.size() - 1; j++) {
             //neurony z warstwy j+1 = neurony z warstwy j * wagi tych neuronów
             layers.get(j + 1).setNeurons(layers.get(j).getNeurons().multiply(layers.get(j).getWeights()));
@@ -173,11 +170,11 @@ public class Net {
 //            }
 //            data += "-------------------------------\n";
 //        }
-
         System.out.println(data);
         PrintWriter saver = null;
         try {
             saver = new PrintWriter("results/RAPORT_TEST.txt");
+            saver.println("\tRAPORT Z PROCESU TESTOWANIA");
             saver.println(data);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -187,6 +184,7 @@ public class Net {
         return layers.get(layers.size() - 1).aveError();
     }
 
+    //ZAPIS SIECI DO PLIKU
     public void saveNet() {
         ObjectOutputStream saver = null;
         try {
@@ -205,9 +203,9 @@ public class Net {
         }
     }
 
+    //ODCZYT SIECI Z PLIKU
     public void readNet() {
         ObjectInputStream reader = null;
-        //czyścimy zainicjalizowaną przez konstruktor listę
         layers.clear();
         try {
             reader = new ObjectInputStream(new BufferedInputStream(new FileInputStream("results/net")));
@@ -238,8 +236,7 @@ public class Net {
     }
 
     public String printResult() {
-        String data = "Wynik uzyskany przez sieć:\n";
-        data += layers.get(layers.size() - 1).print(layers.get(layers.size() - 1).getNeurons());
+        String data = layers.get(layers.size() - 1).print(layers.get(layers.size() - 1).getNeurons());
         RealMatrix matrix = layers.get(layers.size() - 1).getNeurons();
         double myNumber = 1.0;
         List<Integer> result = new ArrayList<Integer>();
@@ -261,25 +258,25 @@ public class Net {
 
             result.add(index2);
         }
-        //System.out.println(result);
-        int FirstKindCount = 0, SecondKindCount = 0, ThridKindCount = 0;
+
+        int counter1 = 0, counter2 = 0, counter3 = 0;
         int success = 0;
 
         for (int i = 0; i < pattern.getRowDimension(); i++) {
-            //System.out.println("Result: " + result.get(i)+ " Pattern: " + getIndex(pattern.getRowVector(i)));
-            int index = getIndex(pattern.getRowVector(i));
-            if (index == result.get(i)) {
+            int compare = getIndex(pattern.getRowVector(i));
+            if (compare == result.get(i)) {
                 success++;
-                if (index == 0) FirstKindCount++;
-                if (index == 1) SecondKindCount++;
-                if (index == 2) ThridKindCount++;
+                if (compare == 0) { counter1++; }
+                else if (compare == 1) { counter2++; }
+                else if (compare == 2) { counter3++; }
             }
         }
+
         System.out.println("Success rate of: ");
         System.out.println("All: " + (double) success / pattern.getRowDimension() * 100);
-        System.out.println("First: " + (double) FirstKindCount / pattern.getRowDimension() * 3 * 100);
-        System.out.println("Second: " + (double) SecondKindCount / pattern.getRowDimension() * 3 * 100);
-        System.out.println("Third: " + (double) ThridKindCount / pattern.getRowDimension() * 3 * 100);
+        System.out.println("First: " + (double) counter1 / pattern.getRowDimension() * 3 * 100);
+        System.out.println("Second: " + (double) counter2 / pattern.getRowDimension() * 3 * 100);
+        System.out.println("Third: " + (double) counter3 / pattern.getRowDimension() * 3 * 100);
 
         data += "Wzorzec:\n";
         for (int i = 0; i < pattern.getRowDimension(); i++) {
